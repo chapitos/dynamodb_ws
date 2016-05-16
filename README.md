@@ -1,0 +1,1 @@
+This is a test project for working with AWS Dynamo DB and BOTO3 Python API for AWS
