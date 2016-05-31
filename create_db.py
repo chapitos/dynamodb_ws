@@ -4,7 +4,7 @@ dynamodb = boto3.resource('dynamodb', region_name='eu-central-1')
 
 tables = []
 tableName = 'ProductCatalog'
-print 'Creating table: %s' % tableName
+print('Creating table: %s' % tableName)
 
 table = dynamodb.create_table(
     TableName = tableName,
@@ -25,11 +25,11 @@ table = dynamodb.create_table(
         'WriteCapacityUnits' : 5
     }
 )
-print 'Creation of table %s was successful' % tableName
+print('Creation of table %s was successful' % tableName)
 tables.append(tableName)
 
 tableName = 'Forum'
-ptint 'Creating table %s' % tableName
+ptint('Creating table %s' % tableName)
 
 table = dynamodb.create_table(
     TableName = tableName,
@@ -51,11 +51,11 @@ table = dynamodb.create_table(
     }
 )
 
-print 'Creation of table %s was successful' % tableName
+print('Creation of table %s was successful' % tableName)
 tables.append(tableName)
 
 tableName = 'Thread'
-print 'Creating table %s' % tableName
+print('Creating table %s' % tableName)
 
 table = dynamodb.create_table(
     TableName = tableName,
@@ -84,11 +84,11 @@ table = dynamodb.create_table(
         'WriteCapacityUnits' : 5
     }
 )
-print 'Creation of table %s was successful' % tableName
+print('Creation of table %s was successful' % tableName)
 tables.append(tableName)
 
 tableName = 'Reply'
-print 'Creating table %s' % tableName
+print('Creating table %s' % tableName)
 table = dynamodb.create_table(
     TableName = tableName,
     AttributeDefinitions = [
@@ -106,19 +106,22 @@ table = dynamodb.create_table(
         }
     ],
     LocalSecondaryIndexes = [
-        #{
-        #    IndexName = 'PostedBy-index',
-        #    KeySchema = [
-        #        {
-        #            'AttributeName' = 'Id',
-        #            'KeyType'       = 'HASH'
-        #        },
-        #        {
-
-        #        }
-        #    ],
-        #}
-
+        {
+            'IndexName' : 'PostedBy-index',
+            'KeySchema' : [
+                {
+                    'AttributeName' : 'Id',
+                    'KeyType'       : 'HASH'
+                },
+                {
+                    'AttributeName' : 'PostedBy',
+                    'AttributeName' : 'RANGE'
+                }
+            ],
+            'Projection' : {
+                'ProjectionType' : 'KEYS_ONLY'
+            }
+        }
     ],
     KeySchema = [
         {
