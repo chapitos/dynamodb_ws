@@ -125,8 +125,12 @@ table = dynamodb.create_table(
     ],
     KeySchema = [
         {
-            'AttributeName' : 'ForumName',
+            'AttributeName' : 'Id',
             'KeyType' : 'HASH'
+        },
+        {
+            'AttributeName' : 'ReplyDateTime',
+            'KeyType' : 'RANGE'
         }
     ],
     ProvisionedThroughput = {
