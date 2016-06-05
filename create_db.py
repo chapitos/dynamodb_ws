@@ -115,7 +115,7 @@ table = dynamodb.create_table(
                 },
                 {
                     'AttributeName' : 'PostedBy',
-                    'AttributeName' : 'RANGE'
+                    'KeyType' : 'RANGE'
                 }
             ],
             'Projection' : {
