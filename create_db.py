@@ -29,7 +29,7 @@ print('Creation of table %s was successful' % tableName)
 tables.append(tableName)
 
 tableName = 'Forum'
-ptint('Creating table %s' % tableName)
+print('Creating table %s' % tableName)
 
 table = dynamodb.create_table(
     TableName = tableName,
